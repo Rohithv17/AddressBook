@@ -1,10 +1,14 @@
 package com.bridgelabz.AddressBook;
+
+
+import java.util.HashMap;
 import java.util.Scanner;
 public class AddressBookService {
-    public String display(Person p){
-        return p.getFirstName()+" "+p.getLastName()+" "+p.getCity()+" "+p.getState()+" "+ p.getEmail()+" "+p.getPhoneNumber()+ " "+p.getZip();
+    public String display(Person p) {
+        return p.getFirstName() + " " + p.getLastName() + " " + p.getCity() + " " + p.getState() + " " + p.getEmail() + " " + p.getPhoneNumber() + " " + p.getZip();
     }
-    public void setValues(Person p){
+
+    public void setValues(Person p) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter First Name");
         String first = sc.next();
@@ -28,5 +32,13 @@ public class AddressBookService {
         int zip = sc.nextInt();
         p.setZip(zip);
     }
-}
 
+    public void addPerson(AddressBookService addressBookService) {
+            HashMap<Integer,Person> contactList = new HashMap<Integer, Person>();
+            Person newPerson = new Person();
+            addressBookService.setValues(newPerson); // Using the setValues method from AddressBookService
+            int newContactId = contactList.size() + 1;
+            contactList.put(newContactId, newPerson);
+            System.out.println("Contact added successfully with ID: " + newContactId);
+        }
+    }
